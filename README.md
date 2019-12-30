@@ -18,7 +18,7 @@ Its normal defaults include looping forever, full screen video, with subtitles e
 * mplayer
 * mplayer2
 
-So you can download the file, put it somewhere in your PATH, run `chmod +x` on `mplall.sh`, move to a directory with media files, and give it a try!
+So you can download the script `mplall.sh`, put it somewhere in your PATH, run `chmod +x` on `mplall.sh`, change to any directory with media files, and give it a try!
 
 
 ## Usage
