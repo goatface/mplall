@@ -16,8 +16,8 @@
 # Name: 	mplall.sh
 # Does: 	loops media players on media files from the command line
 # Systems: 	R Pi using hardware acceleration; GNU/Linux; MacOS
-# Author: 	daid kahl
-# Last updated: 30 Dec 2019 18:05:29 	
+# Author: 	Copyright daid kahl 2019
+# Last updated: 30 Dec 2019 21:04:38  	
 
 VERSION=1.0
 
