@@ -1,6 +1,6 @@
 # mplall
 
-Command-line driven media looper, using a variety of engines.  Particularly well-suited for Raspberry Pi applications.
+Command-line driven media looper, using a variety of engines.  Particularly well-suited for Raspberry Pi applications using `omxplayer`.
 
 Use it to play music, watch videos, or for example pilot a video for informational purposes.
 
