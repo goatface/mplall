@@ -36,5 +36,8 @@ In more recent years, I found that `omxplayer` is needed on the Raspberry Pi to 
 
 ## Additional Raspberry Pi Notes
 
-In the future, I willl describe what I consider the optimal setup for Raspberry Pi using `mplall` to pilot `omxplayer`.
+In the future, I will describe what I consider the optimal setup for Raspberry Pi using `mplall` to pilot `omxplayer`.
 
+## Mac OS randomize bug
+
+I only have access to a rather old MacBook, running 10.5.  The default `sort` doesn't understand -R for randmoize.  Probably fink or macports already has a better version of `sort` we can use (which is probably installed on any system with mplayer-x).
