@@ -8,7 +8,7 @@ Use it to play music, watch videos, or for example pilot a video for information
 
 Loops over media files, kind of like `cp -r *` if you could do `mplayer -r *`.  A low overhead, no-nonsense, single command to pilot mplayer, mplayer-x, mplayer2, and omxplayer.  I use it every day in regular Linux systems, Mac OS, and the Raspian distro for the Raspberry Pi.  I have also used it for running videos during outreach events (with zero configuration and excellent results).
 
-Its normal defaults include looping forever, full screen video, with subtitles enabled, but these can be changed in a configuration file.  The default is to make an alphabetic playlist (including files in subdirectories), but there is are options for randomized playback as well as single-file input.
+Its normal defaults include looping forever, full screen video, with subtitles enabled, but these can be changed in a future configuration file.  The default is to make an alphabetic playlist (including files in subdirectories), but there is are options for randomized playback as well as single-file input.
 
 ## How to 'install'
 
