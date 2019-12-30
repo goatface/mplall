@@ -12,11 +12,11 @@ Its normal defaults include looping forever, full screen video, with subtitles e
 
 ## How to 'install'
 
-`mplall` is just a single shell script.  While it needs a run configuration file, it will initialize one for you the first time you run it.  You'll need at least one supported media player:
-* omxplayer
-* mplayer-x
-* mplayer
-* mplayer2
+`mplall` is just a single shell script. You'll need at least one supported media player, which mplall looks for in this order:
+* omxplayer (supports Raspberry Pi video hardware acceleration)
+* mplayer-x (supports subtitles in macOS)
+* mplayer (default)
+* mplayer2 (supports gapless audio)
 
 So you can download the script `mplall.sh`, put it somewhere in your PATH, run `chmod +x` on `mplall.sh`, change to any directory with media files, and give it a try!
 
