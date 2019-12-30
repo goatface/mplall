@@ -32,7 +32,7 @@ It has a few kind of options, like randomization, single-file input, blackout on
 
 `mplall` was originally a one-liner I used mainly for listening to music without any overhead.  It's also good for watching videos, and although the playlists it can construct are limited, no work is needed by the user (principle of maximum laziness).  
 
-In more recent years, I found that `omxplayer` is needed on the Raspberry Pi to watch most videos owing to its use of hardware acceleration.  However, `omxplayer` has a very primitive command-line interface and does not even support playlists.  None of the scripts I could find online were satisfactory, so I spent time to workout a scripted playlist system to support `omxplayer` in `mplall`.  Based on these considerations, I considered there could be a wider audience interested in this script (considering the number of forum posts asking how to script `omxplayer`).
+In more recent years, I found that `omxplayer` is needed on the Raspberry Pi to watch most videos owing to its use of hardware acceleration.  However, `omxplayer` has a very primitive command-line interface and does not even support playlists.  None of the scripts I could find online were satisfactory, so I spent time to workout a scripted playlist system to support `omxplayer` in `mplall`.  Based on these considerations, I thought there could be a wider audience interested in this script (considering the number of forum posts asking how to script `omxplayer`).
 
 ## Additional Raspberry Pi Notes
 
