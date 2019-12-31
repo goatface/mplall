@@ -1,6 +1,6 @@
 # mplall
 
-Command-line driven, playlist building media looper, using a variety of engines.  Particularly well-suited for Raspberry Pi applications using `omxplayer` but certainly works for `mplayer` and all derivatives.
+A command-line driven, playlist-building, media-looper (using a variety of engines).  Particularly well-suited for Raspberry Pi applications using `omxplayer` but certainly works for `mplayer` and all derivatives.
 
 A goal of `mplall` is that its users don't need to touch the script to achieve their desired results.  Please use `cd` and `mplall.sh` instead!
 
