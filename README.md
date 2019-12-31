@@ -34,6 +34,8 @@ It has a few kind of options, like randomization, single-file input, blackout on
 
 `mplall` also displays some basic features of the script (or engine) relevant to quitting or seeking to a new track.  These may be obscured by video output. 
 
+`Ctrl+c` will always kill `mplall`
+
 ## History
 
 `mplall` was originally a one-liner I wrote to listen to music without any overhead in 2007 during long Gentoo Linux installs.  I discovered later that it's also good for watching videos.  Although the playlists it can construct are limited, no work is needed by the user (principle of maximum laziness).  
