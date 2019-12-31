@@ -14,14 +14,15 @@ Its normal defaults include looping forever, full screen video, with subtitles e
 
 ## How to 'install'
 
-`mplall` is just a single shell script. You'll need at least one supported media player, which mplall looks for in this order:
+`mplall` is just a single shell script.  It doesn't do anything to your files nor your system.
+
+You'll need at least one supported media player, which mplall looks for in this order:
 * omxplayer (supports Raspberry Pi video hardware acceleration)
 * mplayer-x (supports subtitles in macOS)
 * mplayer2 (supports gapless audio)
 * mplayer (default fallback)
 
-So you can download the script `mplall.sh`, put it somewhere in your PATH, run `chmod +x` on `mplall.sh`, change to any directory with media files, and give it a try!
-
+Once you have a supported engine, download the script `mplall.sh`, put it somewhere in your PATH, run `chmod +x` on `mplall.sh`, change to any directory with media files, and give it a try!  
 
 ## Usage
 
@@ -29,10 +30,15 @@ In general, you can move to any directory with media files and simply call `mpla
 
 It has a few kind of options, like randomization, single-file input, blackout on the Raspberry Pi, etc.  Call `mplall.sh` with any junk like `mplall.sh --help` and it will instruct you how it can be invoked.
 
+## Disclaimer
+
+If you are not satisfied, please let me know how I can help.  My goal is to provide a useful script that is simple and easy to use.
+
+Please see the licence for more details.
 
 ## History
 
-`mplall` was originally a one-liner I used mainly for listening to music without any overhead.  It's also good for watching videos, and although the playlists it can construct are limited, no work is needed by the user (principle of maximum laziness).  
+`mplall` was originally a one-liner I wrote to listen to music without any overhead in 2007 during long Gentoo Linux installs.  I discovered later that it's also good for watching videos.  Although the playlists it can construct are limited, no work is needed by the user (principle of maximum laziness).  
 
 In more recent years, I found that `omxplayer` is needed on the Raspberry Pi to watch most videos owing to its use of hardware acceleration.  However, `omxplayer` has a very primitive command-line interface and does not even support playlists.  None of the scripts I could find online were satisfactory, so I spent time to workout a scripted playlist system to support `omxplayer` in `mplall`.  Based on these considerations, I thought there could be a wider audience interested in this script (considering the number of forum posts asking how to script `omxplayer`).
 
