@@ -46,7 +46,7 @@ In more recent years, I found that `omxplayer` is needed on the Raspberry Pi to 
 
 There are really none.  
 
-The worst thing `mplall.sh` can probably do is be called from something like your home directory (to build its playlist, it needs to parse files).  It has a confirming mechanism to prevent this as an accident.
+The worst thing `mplall.sh` can probably do is be called from something like your home directory (to build its playlist, it needs to parse filenames).  It has a confirming mechanism to prevent this as an accident.
 
 `mplall.sh` never uses any commands like `rm` and it never tries to install anything (it has /tmp/.mplall it overwrites for playlist production).  `mplall` just plays media from the current directory.
 
