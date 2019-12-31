@@ -26,11 +26,13 @@ Once you have a supported engine, download the script `mplall.sh`, put it somewh
 
 ## Usage
 
-In general, you can move to any directory with media files and simply call `mplall.sh`.  In practice, for optimal usage, the media files are best organized by directories (e.g., Artist/Album/01_Song) and not a giant torrent dump with thousands of files in one directory.  `mplall` will give you a warning if you try to call it from your home directory (which could involve parsing thousands of files).  
+`mplall` is a command-line interface program.  Firstly, please open a terminal emulator on a UNIX-like system.
+
+In general, you can `cd` to any directory with media files and simply call `mplall.sh`.  In practice, for optimal usage, the media files are best organized by directories (e.g., Artist/Album/01_Song) and not a giant torrent dump with thousands of files in one directory.  `mplall` will give you a warning if you try to call it from your home directory (which could involve parsing thousands of files).  
 
 It has a few kind of options, like randomization, single-file input, blackout on the Raspberry Pi, etc.  Call `mplall.sh` with any junk like `mplall.sh --help` and it will instruct you how it can be invoked.
 
-`mplall` also displays some basic features of the script (or engine) relevant to quitting or seeking to a new track.  They are colorful but may be hidden by a fullscreen video; to ensure they are hidden with `omxplayer` on the RPi, please use the `-b` option for `mplall.sh`.
+`mplall` also displays some basic features of the script (or engine) relevant to quitting or seeking to a new track.  These may be obscured by video output. 
 
 ## History
 
@@ -52,7 +54,7 @@ In the future, I will describe what I consider the optimal setup for Raspberry P
 
 ## Mac OS randomize bug
 
-I only have access to a rather old MacBook, running 10.5.  The default `sort` doesn't understand -R for randmoize.  Probably fink or macports already has a better version of `sort` we can use (which is probably installed on any system with mplayer-x).
+I only have access to a rather old MacBook, running 10.5.  The default `sort` doesn't understand -R for randomize.  Probably fink or macports already has a better version of `sort` we can use (which is probably installed on any system with mplayer-x).
 
 ## Disclaimer
 
