@@ -4,7 +4,7 @@ Command-line driven, playlist building media looper, using a variety of engines.
 
 A goal of `mplall` is that its users don't need to touch the script to achieve their desired results.  Please use `cd` and `mplall.sh` instead!
 
-Use it to play music, watch videos, or for example pilot a video for informational or artistic purposes.  A playlist will be generated automatically from the working directory.
+Use it to play music, watch videos, or for example pilot a video for informational or artistic purposes.  A playlist will be generated automatically from the working directory and loop.
 
 ## Functionality
 
