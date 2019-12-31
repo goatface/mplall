@@ -30,6 +30,8 @@ In general, you can move to any directory with media files and simply call `mpla
 
 It has a few kind of options, like randomization, single-file input, blackout on the Raspberry Pi, etc.  Call `mplall.sh` with any junk like `mplall.sh --help` and it will instruct you how it can be invoked.
 
+`mplall` also displays some basic features of the script (or engine) relevant to quitting or seeking to a new track.  They are colorful.
+
 ## History
 
 `mplall` was originally a one-liner I wrote to listen to music without any overhead in 2007 during long Gentoo Linux installs.  I discovered later that it's also good for watching videos.  Although the playlists it can construct are limited, no work is needed by the user (principle of maximum laziness).  
