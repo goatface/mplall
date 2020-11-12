@@ -16,10 +16,17 @@
 # Name: 	mplall.sh
 # Does: 	loops media players on media files from the command line
 # Systems: 	R Pi using hardware acceleration; GNU/Linux; MacOS
-# Author: 	Copyright daid kahl 2019
-# Last updated: 30 Dec 2019 21:04:38  	
+# Author: 	Copyright daid kahl 2020
+# Last updated: 12 Nov 2020 17:34:20	
 
-VERSION=1.0
+VERSION=1.1
+
+# RPI users: Set the audio device
+# See man omxplayer under -o for valid audio output devices
+# Here we default to ALSA, but options include: hdmi/local/both/alsa
+# Without anything, omxplayer may not respond to standard system volume controls
+RPIAUDIO="alsa"
+#RPIAUDIO="hdmi"
 
 # Recognized media file types regex for grep (not case sensitive)
 # You can add more, but please mimic the grep regex style employed
@@ -67,6 +74,12 @@ function OSD(){
   else 
   	echo -e "\n\e[31;1mPress \e[34;1mCtrl+c \e[31mor \e[34;1mq \e[31mto kill $0 and the keys \e[34;1m< \e[31mor \e[34;1m> \e[31mto seek files in the playlist.\e[0m\n" 
   fi
+}
+
+# generation of playlist for omxplayer on RPi
+function RPIPLAYLIST(){
+  # Populate playlist from working directory
+  find -L "$PWD" -type f | egrep -i "$FILETYPES" | sort $RANDOMIZE > $PLAYLIST
 }
 
 # Set appropriate player or die
@@ -134,17 +147,14 @@ if [ "$Rflag" ];then
 fi
 
 if [[ $RPI ]];then # For omxplayer on Raspberry Pi, we need to pass files one-by-one to emulate a playlist
-	# -o also is for the audio to use ALSA (usually the standard one for normal volume controls)
-	OPTIONS="$BLACKOUT -o alsa"
+	OPTIONS="$BLACKOUT -o $RPIAUDIO"
 	if [[ -z "$PLAYLIST" ]]; then
 	  PLAYLIST="/tmp/.mplall"
-	  # Populate playlist from working directory
-	  find -L "$PWD" -type f | egrep -i "$FILETYPES" | sort $RANDOMIZE > $PLAYLIST
+	  RPIPLAYLIST 
 	else
 	  echo "$PLAYLIST" > /tmp/.mplall
 	  PLAYLIST="/tmp/.mplall"
 	fi
-
 	while true; do
 	  # allow loop body to read stdin so redirect on 10, 
 	  # see https://stackoverflow.com/questions/1521462/looping-through-the-content-of-a-file-in-bash
@@ -153,6 +163,9 @@ if [[ $RPI ]];then # For omxplayer on Raspberry Pi, we need to pass files one-by
 	    echo -e "\e[34;1mPlaying \e[93;1m$entry \e[34;1m. . .\e[0m\n"
 	    "$MPLAYER" $OPTIONS "$entry" 
 	  done 10< "$PLAYLIST"
+	  # regenerate playlist to reflect any new files.  
+	  # see https://github.com/goatface/mplall/issues/1
+	  RPIPLAYLIST
 	done
 else # For mplayer and derivatives, direct playlists are supported greatly simplifying the code
 	OSD 
