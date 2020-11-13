@@ -16,7 +16,7 @@
 # Name: 	mplall.sh
 # Does: 	loops media players on media files from the command line
 # Systems: 	R Pi using hardware acceleration; GNU/Linux; MacOS
-# Author: 	Copyright daid kahl 2020
+# Author: 	daid kahl Copyright 2020
 # Last updated: 12 Nov 2020 17:34:20	
 
 VERSION=1.1
@@ -150,9 +150,11 @@ if [[ $RPI ]];then # For omxplayer on Raspberry Pi, we need to pass files one-by
 	OPTIONS="$BLACKOUT -o $RPIAUDIO"
 	if [[ -z "$PLAYLIST" ]]; then
 	  PLAYLIST="/tmp/.mplall"
+	  RPIPLGEN=1
 	  RPIPLAYLIST 
 	else
 	  echo "$PLAYLIST" > /tmp/.mplall
+	  RPIPLGEN=""
 	  PLAYLIST="/tmp/.mplall"
 	fi
 	while true; do
@@ -165,7 +167,9 @@ if [[ $RPI ]];then # For omxplayer on Raspberry Pi, we need to pass files one-by
 	  done 10< "$PLAYLIST"
 	  # regenerate playlist to reflect any new files.  
 	  # see https://github.com/goatface/mplall/issues/1
-	  RPIPLAYLIST
+	  if [ "$RPIPLGEN" ];then
+	    RPIPLAYLIST
+	  fi
 	done
 else # For mplayer and derivatives, direct playlists are supported greatly simplifying the code
 	OSD 
