@@ -40,7 +40,8 @@ It has a few kind of options, like randomization, single-file input, blackout on
 
 Various options are implemented to randomize the playlist, blackout the desktop, minimize the terminal, etc.  See the help messaging below:
 
-`Recursively find and play media files starting from the present directory, forever.
+```
+Recursively find and play media files starting from the present directory, forever.
 Video is full-screened; subtitles enabled by default. 
 Several media players are supported, including omxplayer for Raspberry Pi.
 
@@ -55,7 +56,8 @@ options:
    -D           : play media on Desktop (experimental)
    -R           : generate Random playlist
 arguments:
-   file         : specific file to play (optional)`
+   file         : specific file to play (optional)
+```
 
 ## History
 
