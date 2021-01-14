@@ -36,6 +36,27 @@ It has a few kind of options, like randomization, single-file input, blackout on
 
 `Ctrl+c` will always kill `mplall`
 
+## Features
+
+Various options are implemented to randomize the playlist, blackout the desktop, minimize the terminal, etc.  See the help messaging below:
+
+`Recursively find and play media files starting from the present directory, forever.
+Video is full-screened; subtitles enabled by default. 
+Several media players are supported, including omxplayer for Raspberry Pi.
+
+Usage /home/daid/scripts/mplall: [-b] [-B] [-M] [-R] [-D] [file]
+
+options:
+   -b           : black background outside video on RPi omxplayer
+   -B           : black background outside video on any system, without flashing the desktop between tracks
+                    Note: The GUI OSD for, e.g., volume control can be seen in -B but not -b mode.
+   -M           : minimize the terminal
+                    Note: The user needs to refocus to the terminal to control the media!
+   -D           : play media on Desktop (experimental)
+   -R           : generate Random playlist
+arguments:
+   file         : specific file to play (optional)`
+
 ## History
 
 `mplall` was originally a one-liner I wrote to listen to music without any overhead in 2007 during long Gentoo Linux installs.  I discovered later that it's also good for watching videos.  Although the playlists it can construct are limited, no work is needed by the user (principle of maximum laziness).  
