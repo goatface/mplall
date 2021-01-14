@@ -15,11 +15,11 @@
 #
 # Name: 	mplall.sh
 # Does: 	loops media players on media files from the command line
-# Systems: 	R Pi using hardware acceleration; GNU/Linux; MacOS
-# Author: 	daid kahl Copyright 2020
-# Last updated: 12 Nov 2020 17:34:20	
+# Systems: 	RPi using hardware acceleration; GNU/Linux; MacOS
+# Author: 	daid kahl Copyright 2021
+# Last updated: 14 Jan 2021 16:39:32  
 
-VERSION=1.1
+VERSION=1.2
 
 # RPI users: Set the audio device
 # See man omxplayer under -o for valid audio output devices
@@ -41,10 +41,14 @@ Recursively find and play media files starting from the present directory, forev
 Video is full-screened; subtitles enabled by default. 
 Several media players are supported, including omxplayer for Raspberry Pi.
 
-Usage $0: [-b] [-R] [-D] [file]
+Usage $0: [-b] [-B] [-M] [-R] [-D] [file]
 
 options:
    -b           : black background outside video on RPi omxplayer
+   -B           : black background outside video on any system, without flashing the desktop between tracks
+                    Note: The GUI OSD for, e.g., volume control can be seen in -B but not -b mode.
+   -M           : minimize the terminal, black background, without flashing the desktop between tracks
+                    Note: The user needs to refocus to the terminal to control the media!
    -D		: play media on Desktop (experimental)
    -R		: generate Random playlist
 arguments:
@@ -82,6 +86,13 @@ function RPIPLAYLIST(){
   find -L "$PWD" -type f | egrep -i "$FILETYPES" | sort $RANDOMIZE > $PLAYLIST
 }
 
+## Blackout hacking
+#function BLACKOUTHAX(){
+#  # create a 1x1 black pixel on the fly  
+#  CANVAS=/tmp/.mplall_canvas.gif
+#  convert -size 1x1 canvas:black $CANVAS
+#}
+
 # Set appropriate player or die
 if ( which omxplayer &>/dev/null );then
 	MPLAYER="omxplayer"
@@ -102,11 +113,28 @@ fi
 Rflag=""
 Dflag=""
 bflag=""
-while getopts 'bRD' OPTION
+Bflag=""
+Mflag=""
+while getopts 'bBDMR' OPTION
 do
   case $OPTION in
   b)    bflag=1
-        BLACKOUT="-b";;
+        BLACKOUT="-b"
+	if [[ !$RPI ]];then
+          echo "Warning: -b mode only works on RPi's omxplayer.  Ignoring -b.  Try -B instead."
+	fi
+	;;
+  B)    Bflag=1
+        which wmctrl &>/dev/null || { printf "mplall requires wmctrl for Blackout hacked mode but it's not in your PATH or not installed.\nAborting.\n" >&2; exit 1; } 
+        which feh &>/dev/null || { printf "mplall requires feh for Blackout hacked mode but it's not in your PATH or not installed.\nAborting.\n" >&2; exit 1; } 
+        which convert &>/dev/null || { printf "mplall requires imagemagick for Blackout hacked mode but it's not in your PATH or not installed.\nAborting.\n" >&2; exit 1; } 
+	;;
+  M)    Mflag=1
+        MINIMIZE="-M"
+        which xdotool &>/dev/null || { printf "mplall requires xdotool for Minimize mode but it's not in your PATH or not installed.\nAborting.\n" >&2; exit 1; } 
+        #which feh &>/dev/null || { printf "mplall requires feh for Minimize mode but it's not in your PATH or not installed.\nAborting.\n" >&2; exit 1; } 
+        #which convert &>/dev/null || { printf "mplall requires imagemagick for Minimize mode but it's not in your PATH or not installed.\nAborting.\n" >&2; exit 1; } 
+	;;
   R)    Rflag=1
         RANDOMIZE="-R";;
   D)    Dflag=1
@@ -144,6 +172,19 @@ if [ "$Rflag" ];then
 	echo "mplall generating random playlist..."
 	# TODO: Randomize manually inputted playlist.
   	#PLAYLIST=$(echo "$@"|sed 's/\ /\n/g'|sort $RANDOMIZE)
+fi
+
+if [[ $Bflag ]];then
+  # create a 1x1 black pixel on the fly  
+  CANVAS=/tmp/.mplall_canvas.gif
+  convert -size 1x1 canvas:black $CANVAS
+  # full screen the black pixel with feh and return the focus to the terminal
+  wmctrl -T mplall$$ -r :ACTIVE: ; feh -F $CANVAS & sleep 0.1 ; wmctrl -a mplall$$
+fi
+
+if [[ $Mflag ]];then
+  # minimize the terminal
+  xdotool windowminimize $(xdotool getactivewindow)
 fi
 
 if [[ $RPI ]];then # For omxplayer on Raspberry Pi, we need to pass files one-by-one to emulate a playlist
