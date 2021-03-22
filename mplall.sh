@@ -58,6 +58,8 @@ ENDOFMESSAGE
 }
 
 #TODO: produce and employ defaults from file.  see getpaper
+#TODO: fix mplall grep to have 4 at end ... it tried to play blah.mkv.jpg ....!
+#	see, e.g., https://unix.stackexchange.com/questions/163481/a-command-to-print-only-last-3-characters-of-a-string/163491
 
 #TODO: 	catch PID of find to put on a control_c trap
 # If we get a Ctrl+C, kill.  Needed for RPi but works in all cases
