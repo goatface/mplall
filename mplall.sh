@@ -1,22 +1,19 @@
 #!/bin/bash
-#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-#                    Version 2, December 2004
+#            DO WHATEVER YOU WANT TO PUBLIC LICENSE
 #  
-# Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
-# 
 # Everyone is permitted to copy and distribute verbatim or modified
 # copies of this license document, and changing it is allowed as long
 # as the name is changed.
 #  
-#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#            DO WHATEVER YOU WANT TO PUBLIC LICENSE
 #   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 # 
-#  0. You just DO WHAT THE FUCK YOU WANT TO.
+#  0. You just DO WHATEVER YOU WANT TO.
 #
 # Name: 	mplall.sh
 # Does: 	loops media players on media files from the command line
 # Systems: 	RPi using hardware acceleration; GNU/Linux; MacOS
-# Author: 	daid kahl Copyright 2021
+# Author: 	daid kahl Copyright 2022
 # Last updated: 14 Jan 2021 16:39:32  
 
 VERSION=1.2
@@ -47,7 +44,7 @@ options:
    -b           : black background outside video on RPi omxplayer
    -B           : black background outside video on any system, without flashing the desktop between tracks
                     Note: The GUI OSD for, e.g., volume control can be seen in -B but not -b mode.
-   -M           : minimize the terminal
+   -M           : minimize the terminal, black background, without flashing the desktop between tracks
                     Note: The user needs to refocus to the terminal to control the media!
    -D		: play media on Desktop (experimental)
    -R		: generate Random playlist
