@@ -43,7 +43,7 @@ Various options are implemented to randomize the playlist, blackout the desktop,
 ```
 Recursively find and play media files starting from the present directory, forever.
 Video is full-screened; subtitles enabled by default. 
-Several media players are supported, including omxplayer for Raspberry Pi.
+Several media players are supported, including omxplayer for Raspberry Pi with added profile support.
 
 Usage /home/daid/scripts/mplall: [-b] [-B] [-M] [-R] [-D] [file]
 
