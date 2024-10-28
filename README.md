@@ -38,22 +38,28 @@ It has a few kind of options, like randomization, single-file input, blackout on
 
 ## Features
 
-Various options are implemented to randomize the playlist, blackout the desktop, minimize the terminal, etc.  See the help messaging below:
+Various options are implemented to randomize the playlist, blackout the desktop, minimize the terminal, etc.  
+
+In 2024, profiles and continue watching are released for the RPi version.
+
+See the help messaging below:
 
 ```
 Recursively find and play media files starting from the present directory, forever.
 Video is full-screened; subtitles enabled by default. 
-Several media players are supported, including omxplayer for Raspberry Pi with added profile support.
+Several media players are supported, including omxplayer for Raspberry Pi.
 
-Usage /home/daid/scripts/mplall: [-b] [-B] [-M] [-R] [-D] [file]
+Usage $0: [-b] [-B] [-c] [-D] [-p int] [-M] [-R] [file]
 
 options:
    -b           : black background outside video on RPi omxplayer
    -B           : black background outside video on any system, without flashing the desktop between tracks
                     Note: The GUI OSD for, e.g., volume control can be seen in -B but not -b mode.
-   -M           : minimize the terminal
-                    Note: The user needs to refocus to the terminal to control the media!
+   -c           : continues playing from previous occasion (presently only on RPi)
    -D           : play media on Desktop (experimental)
+   -p [<int>]   : profile # environment (presently only on RPi.) To see profiles use -p list
+   -M           : minimize the terminal, black background, without flashing the desktop between tracks
+                    Note: The user needs to refocus to the terminal to control the media!
    -R           : generate Random playlist
 arguments:
    file         : specific file to play (optional)
