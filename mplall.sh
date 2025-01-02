@@ -14,9 +14,9 @@
 # Does: 	loops media players on media files from the command line
 # Systems: 	R Pi using hardware acceleration; GNU/Linux; MacOS
 # Author: 	daid kahl Copyright 2024
-# Last updated: 28 Oct 2024 00:04:56 
+# Last updated: 29 Dec 2024 22:44:40   
 
-VERSION=1.3
+VERSION=1.4
 
 # RPI users: Set the audio device
 # See man omxplayer under -o for valid audio output devices
@@ -67,6 +67,33 @@ control_c () {
 }
 # trap keyboard interrupt 
 trap control_c SIGINT
+
+# if:
+#    we are using a profile
+#    a profile file already exists under the number
+#    we are not in the working directory of said profile
+#    it's not a continuing playback (which can be called from another location)
+# confirm:
+#    the user wants to erase the old profile?
+function CheckCollision(){
+  file=$HOME/.mplall/mplallp$pval 
+  RESULT=$(grep "${PWD##*/}" "$file")
+  if [[ -e $file && -z $RESULT && -z $cflag ]] ; then
+    echo -e "\e[34;1;4mProfile $pval\e[0m"
+    head -n $(cat $(echo "$file" | sed 's/mplallp/mplall-filenumberp/')) "$file"
+    echo ""
+    echo -e "\e[31;1mReally clean this profile?\e[0m\n"
+    read -p  "Yes or no (y/n): " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Nn]$ ]]; then
+      echo "No action taken.  Quitting.  Move to a different directory or choose another profile."
+      exit
+    fi
+    rm -rf $HOME/.mplall/mplallp$pval
+    rm -rf $HOME/.mplall/mplall-pwdp$pval
+    rm -rf $HOME/.mplall/mplall-filenumberp$pval
+  fi
+}
 
 #On Screen Display with instructions depending on the player
 function OSD(){
@@ -189,7 +216,9 @@ do
 	      head -n 3 "$file"
 	    fi
 	  done
-          read -p  "Really clean the profiles? (y/n): " -n 1 -r
+	  echo ""
+          echo -e "\e[31;1mReally clean these profiles?\e[0m\n"
+          read -p  "Yes or no (y/n): " -n 1 -r
           echo
           if [[ $REPLY =~ ^[Yy]$ ]]; then
             rm -rf $HOME/.mplall/mplallp*
@@ -238,6 +267,11 @@ shift $((OPTIND-1))
 if [[ ! -z "$2" ]];then
   echo "More than one manual input presently unsupported..."
   echo "Ignoring inputs after $1 "
+fi
+
+# -c flag can come after -p flag so we cannot check it above
+if [[ $pflag ]];then
+  CheckCollision
 fi
 
 if [[ ! -z "$1" ]];then
